@@ -39,11 +39,11 @@ class BookController extends Controller
             //'comment' => 'nullable|string|max:255',
         ]);
 
-        if ($request->input('rating')) {
-            $this->ratingRepository->updateOrCreateRating(auth()->id(), $book, $request->input('rating'));
+        if ($request->filled('rating')) {
+            $this->ratingRepository->addrating(auth()->id(), $book, $request->input('rating'));
         }
 
-        if ($request->input('comment')) {
+        if ($request->filled('comment')) {
             $this->commentRepository->addComment(auth()->id(), $book, $request->input('comment'));
         }
 
